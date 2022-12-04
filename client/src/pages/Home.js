@@ -51,12 +51,15 @@ function Home() {
             setShow(false);
             setMessage("");
           }, 4000);
+          setErrors({});
+          setShow(false);
         }
       });
     }
   };
   // ** create a new user
   const onSubmitHandler = (e) => {
+    setErrors({});
     e.preventDefault();
     axios
       .post("http://localhost:8080/api/user/", newUser)
@@ -70,6 +73,7 @@ function Home() {
             setShow(false);
             setMessage("");
           }, 4000);
+          setErrors({});
         }
       })
       .catch((err) => {
@@ -78,8 +82,7 @@ function Home() {
             ...errors,
             email: "This email already used",
           }));
-        }
-        if (err?.response?.status === 422) {
+        } else if (err?.response?.status === 422) {
           setErrors((prev) => ({
             ...errors,
             phoneNumber: "This phone number is already used",
@@ -97,7 +100,7 @@ function Home() {
         <form onSubmit={onSubmitHandler}>
           <InputGroup
             label="Email"
-            type="text"
+            type="email"
             name="email"
             onChangeHandler={onChangeHandler}
             errors={errors?.email}

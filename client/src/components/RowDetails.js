@@ -17,11 +17,11 @@ function RowDetails({
       <td>{phoneNumber}</td>
       <td className="gap__actions">
         {/* Link to single profile */}
-        <span className="badge bg-info">
-          <Link to={`/${_id}`} className="text-white">
+        <Link to={`/${_id}`} className="text-white">
+          <span className="badge bg-info">
             <i className="fas fa-edit"></i>
-          </Link>
-        </span>
+          </span>
+        </Link>
         {/* delete button */}
         <span className="badge bg-danger" onClick={() => OnDelete(_id)}>
           <i className="fas fa-trash-alt"></i>

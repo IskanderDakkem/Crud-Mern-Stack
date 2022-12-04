@@ -4,7 +4,7 @@ const User = require("../model/user-model");
 //----------------------------------------------------------------------------
 const createNewUser = async (req, res) => {
   try {
-    const { avatar, firstName, lastName, email, phoneNumber } = req.body;
+    const { firstName, lastName, email, phoneNumber } = req.body;
     if (!firstName || !lastName || !email || !phoneNumber) {
       return res
         .status(406)
@@ -19,7 +19,6 @@ const createNewUser = async (req, res) => {
       return res.status(422).json({ message: "Phone number already used" });
     }
     const newUser = new User({
-      avatar,
       firstName,
       lastName,
       email,
